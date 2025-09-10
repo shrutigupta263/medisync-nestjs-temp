@@ -16,7 +16,12 @@ export default class FastifyServerApplication {
 	constructor(private readonly env: EnvironmentService) {}
 
 	protected async configureServices(appModule) {
-		this.app.enableCors()
+		this.app.enableCors({
+			origin: ['http://localhost:8080', 'http://127.0.0.1:8080'],
+			credentials: true,
+			methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+			allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+		})
 		this.app.useLogger(this.app.get(Logger))
 		this.app.useGlobalPipes(
 			new ValidationPipe({
@@ -26,7 +31,7 @@ export default class FastifyServerApplication {
 			})
 		)
 
-		HelmetConfig.useHelmet(this.app)
+		await HelmetConfig.useHelmet(this.app)
 		await CsrfProtectionConfig.useCsrf(this.app)
 		await CompressionConfig.useCompression(this.app, 'brotli')
 		SwaggerConfig.useSwagger(this.app)

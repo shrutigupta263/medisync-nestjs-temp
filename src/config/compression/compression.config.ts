@@ -10,7 +10,7 @@ type CompressionType = 'brotli' | 'gzip'
 export class CompressionConfig {
 	static async useCompression(app: NestFastifyApplication, type: CompressionType = 'gzip') {
 		const compression = await import('@fastify/compress')
-		if (type === 'brotli') await app.register(compression.default)
-		else if (type === 'gzip') await app.register(compression.default, { encodings: ['gzip', 'deflate'] })
+		if (type === 'brotli') await app.register(compression.default as any)
+		else if (type === 'gzip') await app.register(compression.default as any, { encodings: ['gzip', 'deflate'] })
 	}
 }

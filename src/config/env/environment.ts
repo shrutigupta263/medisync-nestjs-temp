@@ -17,9 +17,9 @@ export const env = cleanEnv(process.env, {
 		default: 'local',
 	}),
 	PORT: port({
-		default: 5000,
+		default: 3000,
 		desc: 'The TCP port that this server will listen to.',
-		example: '9229',
+		example: '3000',
 	}),
 	MAX_TIMEOUT: num({
 		desc: 'Maximum timeout allowed in a API request, in milliseconds',

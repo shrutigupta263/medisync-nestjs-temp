@@ -27,7 +27,7 @@ import { NestFastifyApplication } from '@nestjs/platform-fastify'
 export class HelmetConfig {
 	static async useHelmet(app: NestFastifyApplication) {
 		const fastifyHelmet = await import('@fastify/helmet')
-		await app.register(fastifyHelmet.default, {
+		await app.register(fastifyHelmet.default as any, {
 			// Sets the Cross-Origin-Resource-Policy header to prevent other domains from reading the content.
 			// crossOriginResourcePolicy: { policy: 'same-origin' },
 			crossOriginResourcePolicy: false, // Temporarily fix until app and api share same domain

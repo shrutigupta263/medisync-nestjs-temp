@@ -14,7 +14,7 @@ export class CsrfProtectionConfig {
 		const fastifyCookie = await import('@fastify/cookie')
 		const fastifyCsrf = await import('@fastify/csrf-protection')
 		
-		await app.register(fastifyCookie.default)
-		await app.register(fastifyCsrf.default)
+		await app.register(fastifyCookie.default as any)
+		await app.register(fastifyCsrf.default as any)
 	}
 }
